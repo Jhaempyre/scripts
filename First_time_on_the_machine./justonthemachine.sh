@@ -3,7 +3,7 @@
 sudo adduser username
 
 ##it will prompt for password provide it and then 
-sudo usermod -aG sudo 
+sudo usermod -aG sudo username
 ##it adds sudo privelages 
 
 #Hold on login with this username 
