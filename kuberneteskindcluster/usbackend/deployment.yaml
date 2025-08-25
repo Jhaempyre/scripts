@@ -22,3 +22,11 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "default"
+          volumeMounts:
+            - name: encryption-keys
+              mountPath: /app/keys
+              readOnly: true
+      volumes:
+        - name: encryption-keys
+          secret:
+            secretName: encryption-keys
