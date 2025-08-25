@@ -20,3 +20,9 @@ kubectl get pods -n backend
 
 # 5. Check pod logs to see if keys are loading correctly
 kubectl logs -f deployment/usbackend-deployment -n backend
+
+
+
+//to get into any pods 
+kubectl exec -it <your-pod-name> -n backend -- /bin/sh
+
