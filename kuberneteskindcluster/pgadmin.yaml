@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+  namespace: backend  # Added namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+      - name: pgadmin
+        image: dpage/pgadmin4
+        ports:
+        - containerPort: 5433 # Container now listens here
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          value: "admin@postgres.com" # Must be an email format
+        - name: PGADMIN_DEFAULT_PASSWORD
+          value: "postgres"
+        - name: PGADMIN_LISTEN_PORT
+          value: "5433" # Tells pgAdmin to listen on 5433 instead of 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin-service
+  namespace: backend  # Added namespace
+spec:
+  type: NodePort
+  ports:
+    - port: 5433
+      targetPort: 5433
+      nodePort: 30433
+  selector:
+    app: pgadmin
