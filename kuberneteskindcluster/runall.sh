@@ -22,4 +22,9 @@ cd ~/CloudGateway/src/main
 echo "triggering cloudgateway"
 ./script.sh
 
+cd ~/InventoryManager/src/main/
+
+echo "Running the InventoryManager with Latest commit"
+./script.sh
+
 echo "everything ran beautifully working  fine  with latest commmit and ip address "
